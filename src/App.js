@@ -11,6 +11,8 @@ import Signin from './Components/Sign-in';
 import HomePage from './Page/HomePage';
 function App() {
  const [popular,setPopular] = useState([])
+ const [filtermovie,setFiltermovie] = useState([])
+ const [genre,setGenre] = useState(0)
  useEffect(()=>{
   fetchmovie()
 
@@ -19,23 +21,18 @@ function App() {
   const data = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=13aa08f7158e98f3eaf67a36b6c14e0a&language=en-US&page=1')
   const movie =await data.json()
   setPopular(movie.results)
+  setFiltermovie(movie.results)
 }
- console.log(popular)
 
   return (
     <div className="App">
       <Header/>
      <Globastyle/>
-     {/* <HomePage popular={popular}/> */}
       <Routes>
     <Route  path='/sign-up' element={<Signup/> }/>
     <Route  path='/sign-in' element={ <Signin/>}/>
-    <Route  path='/' element={ <HomePage popular={popular}/> }/>
+    <Route  path='/' element={ <HomePage setPopular={setPopular} popular={popular} filtermovie={filtermovie} setFiltermovie ={setFiltermovie} genre={genre} setGenre={setGenre}/> }/>
      </Routes>
-      {/* <Button/>
-     <Movie popular={popular}/>
-      
-      <Footer/> */}
     </div>
   );
 }

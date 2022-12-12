@@ -4,15 +4,13 @@ import Movie from "../Components/movie";
 import Footer from "../Components/Footer";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-export default function HomePage({popular}) {
+export default function HomePage({popular,filtermovie,setFiltermovie,genre,setGenre,setPopular}) {
   return (
     <div>
-        {/* <Link to='/'> */}
-      <Button/>
-      <Movie popular={popular}/>
+      <Button popular={popular} setPopular={setPopular} genre={genre} setGenre={setGenre} setFiltermovie={setFiltermovie}/>
+      <Movie popular={popular} filtermovie={filtermovie} setFiltermovie={setFiltermovie}/>
       <Line/>
       <Footer/>
-      {/* </Link> */}
     </div>
   )
 }

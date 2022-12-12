@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-export default function Movie({popular}) {
+export default function Movie({popular,filtermovie}) {
   return (
     <Moviestyle >
-      {popular.map((item)=>{
+      {filtermovie.map((item)=>{
         return(
             <div className="item" key={item.id}>
                 <h3 className='title'>{item.title}</h3>

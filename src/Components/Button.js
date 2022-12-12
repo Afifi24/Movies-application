@@ -1,11 +1,20 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import styled from 'styled-components'
-export default function Button() {
+import {motion} from 'framer-motion'
+export default function Button({genre,setGenre,setPopular,popular,setFiltermovie}) {
+  useEffect(()=>{
+    if(genre===0){
+      setPopular(popular)
+      return;
+    }
+    const MovieFiltred = popular.filter((movie)=>movie.genre_ids.includes(genre))
+    setFiltermovie(MovieFiltred)
+  },[genre])
   return (
     <Buttonstyle>
-      <button>All</button>
-      <button>Comedy</button>
-      <button>Action</button>
+      <motion.button className={genre===0?'active':''}  onClick={()=>setGenre(0)}>All</motion.button>
+      <motion.button className={genre===35?'active':''} onClick={()=>setGenre(35)}>Comedy</motion.button>
+      <motion.button className={genre===28?'active':''} onClick={()=>setGenre(28)}>Action</motion.button>
     </Buttonstyle>
   )
 }
@@ -36,9 +45,14 @@ button{
     border: none;
     margin: 1rem 0rem;
     border: 2px solid #4162A8;
-    background-color: transparent;
+    background-color: #fff;
     cursor: pointer;
-
+    
    
+}
+.active{
+background-color: rgb(65,98,168);
+color: #fff;
+transition: 0.4s ease-in;
 }
 `
